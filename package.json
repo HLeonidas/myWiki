@@ -1,0 +1,26 @@
+{
+  "name": "mywiki",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HLeonidas/myWiki.git"
+  },
+  "author": "HLeonidas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HLeonidas/myWiki/issues"
+  },
+  "homepage": "https://github.com/HLeonidas/myWiki#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "firebase": "^9.6.10",
+    "firebase-admin": "^10.0.2"
+  }
+}
