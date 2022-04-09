@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { BrowserRouter } from "react-router-dom";
+import Help from './components/Utils/Help';
+import MySwitch from "./components/Utils/Switch.jsx";
+import Sidebar from './components/Utils/Sidebar';
+import ArticleList from './components/Article/ArticleList';
 
 function App() {
+
+  let routes = [
+    { to: "/topic", component: Help },
+    { to: "/topic/:topicId/", component: ArticleList },
+    { to: "/topic/:topicId/article/:articleId", component: ArticleList },
+    // { to: "/topics/:topicId/:articleId", component: Help },
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Sidebar></Sidebar>
+        <div className='content'>
+          <MySwitch
+            routes={routes}
+            redirect={"/topics"}
+          ></MySwitch>
+        </div>
+      </BrowserRouter>
+
     </div>
   );
 }
