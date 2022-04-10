@@ -39,6 +39,7 @@
     background-color: white;
     font-size: 16px;
     /* border-radius: 0px 0px 10px 10px; */
+    border-bottom: 1px solid hsla(0, 0%, 50%, 0.479);
   }
 
   .sidebar-topics-wrapper[aria-expanded="true"] {
@@ -49,6 +50,10 @@
 
   .article-list-wrapper {
     padding: 10px;
+  }
+
+  .topic-list-entry-wrapper {
+    margin-bottom: 8px;
   }
 
   /* .btn-create-article {
