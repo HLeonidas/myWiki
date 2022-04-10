@@ -6,7 +6,7 @@
   .App {
     grid-template-columns: 1fr;
     height: 100vh;
-    grid-template-rows: 150px 1fr;
+    grid-template-rows: 40px 1fr;
   }
 
   .sidebar-footer-wrapper {
@@ -23,12 +23,13 @@
     width: 99%;
   }
 
-  .topic-wrapper {
+  .sidebar-topics-wrapper {
     overflow: hidden;
     max-height: 1000px;
     transition: max-height 1s ease-in-out;
     height: auto;
-    width: calc(100% - 20px);
+    /* width: calc(100% - 20px); */
+    width: 100%;
     top: 41px;
     position: absolute;
     background-color: white;
@@ -36,9 +37,18 @@
     border-radius: 0px 0px 10px 10px;
   }
 
-  .topic-wrapper[aria-expanded="true"] {
+  .sidebar-topics-wrapper[aria-expanded="true"] {
     max-height: 0px;
     transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
     border: 0px;
+  }
+
+  .article-list-wrapper {
+    padding: 10px;
+  }
+
+  .btn-create-article {
+    right: 30px;
+    bottom: 30px;
   }
 }

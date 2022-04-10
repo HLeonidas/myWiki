@@ -49,12 +49,14 @@ function Sidebar() {
         <div className='sidebar'>
             <h1 className='menu-header' onClick={() => navigate("/topic")}>myWiki</h1>
             <i className={active ? 'bi bi-x burger' : 'bi bi-list burger'} onClick={() => toggleActive()}></i>
+            <div className='sidebar-topics-wrapper' aria-expanded={!active}>
 
-            <TopicList topics={topicsFiltered} active={active} setActive={setActive}></TopicList>
-            <div className='sidebar-footer-wrapper'>
-                <input type={"text"} className="searchBar" onChange={onChange} placeholder="Suchen"></input>
-                <button className='btn-add-topic' onClick={() => { setShow(true) }}>+ Topic hinzufügen</button>
-                <div>menu2</div>
+                <TopicList topics={topicsFiltered} setActive={setActive}></TopicList>
+                <div className='sidebar-footer-wrapper'>
+                    <input type={"text"} className="searchBar" onChange={onChange} placeholder="Suchen"></input>
+                    <button className='btn-add-topic' onClick={() => { setShow(true) }}>+ Topic hinzufügen</button>
+                    <div>menu2</div>
+                </div>
             </div>
             <Modal title="Topic erstellen" onClose={() => closeModal()} show={show}>
                 <TopicForm closeModal={closeModal}></TopicForm>

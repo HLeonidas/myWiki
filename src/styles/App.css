@@ -7,7 +7,13 @@
 .sidebar {
   background-color: white;
   display: grid;
-  grid-template-rows: 40px 1fr 110px;
+  /* grid-template-rows: 40px 1fr 110px; */
+  grid-template-rows: 40px 1fr;
+}
+
+.sidebar-topics-wrapper {
+  display: grid;
+  grid-template-rows: 1fr 110px;
 }
 
 .content {
@@ -16,7 +22,7 @@
 }
 
 .burger {
-  /* display: none; */
+  display: none;
   position: absolute;
   right: 15px;
   top: 7px;
