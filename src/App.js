@@ -1,5 +1,5 @@
 
-import './App.css';
+import './styles/App.css';
 import { BrowserRouter } from "react-router-dom";
 import Help from './components/Utils/Help';
 import MySwitch from "./components/Utils/Switch.jsx";
@@ -12,7 +12,6 @@ function App() {
     { to: "/topic", component: Help },
     { to: "/topic/:topicId/", component: ArticleList },
     { to: "/topic/:topicId/article/:articleId", component: ArticleList },
-    // { to: "/topics/:topicId/:articleId", component: Help },
   ];
 
   return (

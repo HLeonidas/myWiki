@@ -30,7 +30,6 @@ export default function TextInputWithValidation(props) {
       <input
         type={inputType}
         autoComplete="off"
-        // className={!formValidationInfo[key]?.valid ? "form-control is-invalid " + design : "form-control is-valid " + design}
         className={
           !formValidationInfo[key]?.valid
             ? "form-control " + inValid + " " + design
@@ -42,7 +41,6 @@ export default function TextInputWithValidation(props) {
         value={formObject[key]}
         onChange={onChange}
       ></input>
-      {/* <div className="valid-feedback">{formValidationInfo[key]?.msg}</div> */}
       <div className="invalid-feedback">{formValidationInfo[key]?.msg}</div>
     </div>
   );

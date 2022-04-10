@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { topicService } from '../../services/topicService'
+import React from 'react'
+import Spinner from '../Utils/Spinner'
 import Topic from './Topic'
 
-function TopicList() {
-
-    const [topics, setTopics] = useState([])
-
-    useEffect(() => {
-        topicService.getAll()
-            .then((data) => {
-                setTopics(data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [])
-
+function TopicList({ topics }) {
     return (
         <div className='topic-wrapper'>
             <h2 className='topic-list-header'>Topics</h2>
-            {topics.length === 0 ? <p>loading</p> : null}
+            {topics.length === 0 ? <Spinner></Spinner> : null}
             {topics.map((t) => <Topic topic={t}></Topic>)}
         </div>
     )
