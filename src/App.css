@@ -21,6 +21,10 @@
   font-size: 18px;
 }
 
+.menu-header:hover {
+  cursor: pointer;
+}
+
 .topic-list-header {
   margin: 0px;
   margin-bottom: 10px;

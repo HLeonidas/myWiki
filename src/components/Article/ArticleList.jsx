@@ -4,15 +4,11 @@ import { topicService } from '../../services/topicService'
 import Modal from '../Modal/Modal'
 import Article from './Article'
 import ArticleForm from './ArticleForm'
-// import ArticleForm from './ArticleForm'
 
 function ArticleList() {
-
     const [articles, setArticles] = useState([])
-
     const { topicId } = useParams()
     const [show, setShow] = useState(false);
-
 
     useEffect(() => {
         topicService.getArticleOfTopic(topicId)
