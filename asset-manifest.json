@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/myWiki/static/css/main.9350dbf3.css",
-    "main.js": "/myWiki/static/js/main.74511f4c.js",
+    "main.css": "/myWiki/static/css/main.2ad72903.css",
+    "main.js": "/myWiki/static/js/main.74b98fd3.js",
     "static/js/787.4f675c70.chunk.js": "/myWiki/static/js/787.4f675c70.chunk.js",
     "static/media/bootstrap-icons.woff?": "/myWiki/static/media/bootstrap-icons.c1d7432ee75fa194e499.woff",
     "static/media/bootstrap-icons.woff2?": "/myWiki/static/media/bootstrap-icons.a13b815539b49de48d23.woff2",
     "index.html": "/myWiki/index.html",
-    "main.9350dbf3.css.map": "/myWiki/static/css/main.9350dbf3.css.map",
-    "main.74511f4c.js.map": "/myWiki/static/js/main.74511f4c.js.map",
+    "main.2ad72903.css.map": "/myWiki/static/css/main.2ad72903.css.map",
+    "main.74b98fd3.js.map": "/myWiki/static/js/main.74b98fd3.js.map",
     "787.4f675c70.chunk.js.map": "/myWiki/static/js/787.4f675c70.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9350dbf3.css",
-    "static/js/main.74511f4c.js"
+    "static/css/main.2ad72903.css",
+    "static/js/main.74b98fd3.js"
   ]
 }
