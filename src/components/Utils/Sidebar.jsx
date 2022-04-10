@@ -10,6 +10,7 @@ function Sidebar() {
 
     const [show, setShow] = useState(false);
     const [topics, setTopics] = useState([])
+    const [active, setActive] = useState(false)
 
     const [topicsFiltered, setTopicsFiltered] = useState([])
 
@@ -39,14 +40,21 @@ function Sidebar() {
         setTopicsFiltered(_topics)
     }
 
+    function toggleActive() {
+        if (active) setActive(false)
+        else setActive(true)
+    }
+
     return (
         <div className='sidebar'>
             <h1 className='menu-header' onClick={() => navigate("/topic")}>myWiki</h1>
-            <TopicList topics={topicsFiltered}></TopicList>
+            <i className={active ? 'bi bi-x burger' : 'bi bi-list burger'} onClick={() => toggleActive()}></i>
+
+            <TopicList topics={topicsFiltered} active={active} setActive={setActive}></TopicList>
             <div className='sidebar-footer-wrapper'>
                 <input type={"text"} className="searchBar" onChange={onChange} placeholder="Suchen"></input>
                 <button className='btn-add-topic' onClick={() => { setShow(true) }}>+ Topic hinzufügen</button>
-                <div>menu</div>
+                <div>menu2</div>
             </div>
             <Modal title="Topic erstellen" onClose={() => closeModal()} show={show}>
                 <TopicForm closeModal={closeModal}></TopicForm>

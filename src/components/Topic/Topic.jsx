@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 
-function Topic({ topic }) {
+function Topic({ topic, setActive }) {
     let navigate = useNavigate();
     // const { topicId } = useParams()
 
@@ -58,7 +58,10 @@ function Topic({ topic }) {
     }
 
     return (
-        <div className={isSelected() ? 'line-wrapper topic-list-entry-wrapper selected' : 'line-wrapper topic-list-entry-wrapper'} onClick={() => navigate("/topic/" + topic.id)} key={topic.id}>
+        <div className={isSelected() ? 'line-wrapper topic-list-entry-wrapper selected' : 'line-wrapper topic-list-entry-wrapper'} onClick={() => {
+            navigate("/topic/" + topic.id)
+            setActive(false)
+        }} key={topic.id}>
             <div className='symbol-wrapper' style={{ background: topic.color, borderColor: LightenDarkenColor(topic.color, -20), color: getFontColor(topic.color) }}>
                 <i className={'topic-symbol bi ' + topic.symbol}></i>
             </div>

@@ -1,8 +1,44 @@
 @media only screen and (max-width: 600px) {
+  .burger {
+    display: block;
+  }
+
   .App {
-    display: grid;
-    grid-template-columns: unset;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
     height: 100vh;
+    grid-template-rows: 150px 1fr;
+  }
+
+  .sidebar-footer-wrapper {
+    max-width: unset;
+  }
+
+  .sidebar {
+    background-color: white;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+  }
+
+  .searchBar {
+    width: 99%;
+  }
+
+  .topic-wrapper {
+    overflow: hidden;
+    max-height: 1000px;
+    transition: max-height 1s ease-in-out;
+    height: auto;
+    width: calc(100% - 20px);
+    top: 41px;
+    position: absolute;
+    background-color: white;
+    font-size: 16px;
+    border-radius: 0px 0px 10px 10px;
+  }
+
+  .topic-wrapper[aria-expanded="true"] {
+    max-height: 0px;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    border: 0px;
   }
 }
