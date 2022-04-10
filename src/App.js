@@ -1,5 +1,6 @@
 
 import './styles/App.css';
+import './styles/Responsive.css';
 import { BrowserRouter } from "react-router-dom";
 import Help from './components/Utils/Help';
 import MySwitch from "./components/Utils/Switch.jsx";

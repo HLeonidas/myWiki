@@ -9,6 +9,7 @@ export const topicService = {
     getAll,
     getArticleOfTopic,
     create,
+    addArticle
     // update,
     // delete: _delete,
 };
@@ -43,6 +44,20 @@ function getArticleOfTopic(id) {
 function create(obj) {
     return new Promise((resolve, reject) => {
         addDoc(collectionRef, obj)
+            .then(() => {
+                resolve()
+            })
+            .catch((err) => {
+                reject(err)
+            })
+    })
+}
+
+function addArticle(topicId, obj) {
+    const subColRef = collection(db, "topics", topicId, "articles");
+
+    return new Promise((resolve, reject) => {
+        addDoc(subColRef, obj)
             .then(() => {
                 resolve()
             })

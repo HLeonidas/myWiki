@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import TextInputWithValidation from "../Inputs/TextInputValidation";
 import { topicService } from '../../services/topicService';
+import ReactMarkdown from 'react-markdown'
+import { useParams } from 'react-router-dom';
 
 function ArticleForm({ closeModal }) {
+
+  const { topicId } = useParams()
+
   let formValidationInfoDEMO = {
     label: {
       valid: false,
       msg: "",
     },
-    symbol: {
-      valid: true,
-      msg: "",
-    },
-    color: {
+    content: {
       valid: true,
       msg: "",
     },
@@ -22,10 +23,9 @@ function ArticleForm({ closeModal }) {
     }
   };
 
-  const [topic, setTopic] = useState({
-    label: "Cloud",
-    color: "#FFFFFF",
-    symbol: "bi-cloud",
+  const [article, setTopic] = useState({
+    label: "",
+    content: ""
   });
 
   const [formValidationInfo, setFormValidationInfo] = useState(
@@ -77,7 +77,7 @@ function ArticleForm({ closeModal }) {
 
   const onChange = (event) => {
     const { name, value } = event.target;
-    setTopic({ ...topic, [name]: value });
+    setTopic({ ...article, [name]: value });
     validateField(name, value);
   };
 
@@ -111,55 +111,11 @@ function ArticleForm({ closeModal }) {
     return { valid, msg };
   }
 
-  function getFontColor(col) {
-    if (col[0] === "#") {
-      col = col.slice(1);
-    }
-
-    var num = parseInt(col, 16);
-
-    var r = (num >> 16);
-    var b = ((num >> 8) & 0x00FF);
-    var g = (num & 0x0000FF);
-
-    if (r + b + g > 382) {
-      return "black"
-    } else {
-      return "white"
-    }
-  }
-
-  function LightenDarkenColor(col, amt) {
-    var usePound = false;
-    if (col[0] === "#") {
-      col = col.slice(1);
-      usePound = true;
-    }
-
-    var num = parseInt(col, 16);
-
-    var r = (num >> 16) + amt;
-
-    if (r > 255) r = 255;
-    else if (r < 0) r = 0;
-
-    var b = ((num >> 8) & 0x00FF) + amt;
-
-    if (b > 255) b = 255;
-    else if (b < 0) b = 0;
-
-    var g = (num & 0x0000FF) + amt;
-
-    if (g > 255) g = 255;
-    else if (g < 0) g = 0;
-
-    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
-  }
-
   function createTopic() {
-    topicService.create(topic)
+    let _article = { ...article, creationDate: new Date() }
+    topicService.addArticle(topicId, _article)
       .then(() => {
-        closeModal(topic)
+        closeModal(_article)
       })
       .catch((err) => {
         console.log(err)
@@ -169,7 +125,7 @@ function ArticleForm({ closeModal }) {
   return (
     <div className='form-wrapper'>
       <TextInputWithValidation
-        formObject={topic}
+        formObject={article}
         objectKey="label"
         label="Label"
         placeholder="Cloud"
@@ -177,42 +133,22 @@ function ArticleForm({ closeModal }) {
         onChange={onChange}
       ></TextInputWithValidation>
 
-      <div className="grid-2-columns">
-
-        <TextInputWithValidation
-          formObject={topic}
-          objectKey="symbol"
-          label="Symbol"
-          placeholder="bi-time"
-          formValidationInfo={formValidationInfo}
-          onChange={onChange}
-        ></TextInputWithValidation>
-
-        <TextInputWithValidation
-          formObject={topic}
-          objectKey="color"
-          label="Farbe"
-          placeholder="bi-time"
-          formValidationInfo={formValidationInfo}
-          type="color"
-          onChange={onChange}
-        // additionalClass="ml5"
-        ></TextInputWithValidation>
-      </div>
-
-      <div className="line-wrapper">
-
-
-        <div className='symbol-wrapper symbol-form' style={{ background: topic.color, borderColor: LightenDarkenColor(topic.color, -20), color: getFontColor(topic.color) }}>
-          <i className={'topic-symbol bi ' + topic.symbol}></i>
+      <div className="grid-2-columns scroll max-height-400">
+        <div>
+          <label className="inputLabel">Inhalt</label>
+          <textarea onChange={onChange} name="content" placeholder='# Heading' className='text-area-content' rows="10"></textarea>
         </div>
-
-        <button className='btn-create-object'
-          disabled={!formValidationInfo["form"]?.valid}
-          onClick={() => createTopic()}>
-          erstellen
-        </button>
+        <div className='ml5'>
+          <label htmlFor={`inputCtrl_content`} className="inputLabel">Vorschau</label>
+          <ReactMarkdown>{article.content}</ReactMarkdown>
+        </div>
       </div>
+
+      <button className='btn-create-object'
+        disabled={!formValidationInfo["form"]?.valid}
+        onClick={() => createTopic()}>
+        erstellen
+      </button>
     </div>
   )
 }

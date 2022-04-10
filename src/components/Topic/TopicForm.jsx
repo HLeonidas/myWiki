@@ -96,10 +96,7 @@ function TopicForm({ closeModal }) {
     function checkColor(value) {
         let msg = "";
         let valid = true;
-        if (!value) {
-            msg = "";
-            valid = false;
-        }
+
         return { valid, msg };
     }
 
@@ -159,9 +156,10 @@ function TopicForm({ closeModal }) {
     }
 
     function createTopic() {
-        topicService.create(topic)
+        let _topic = { ...topic, creationDate: new Date() }
+        topicService.create(_topic)
             .then(() => {
-                closeModal(topic)
+                closeModal(_topic)
             })
             .catch((err) => {
                 console.log(err)

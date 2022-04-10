@@ -1,11 +1,12 @@
 import React from 'react'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Topic({ topic }) {
     let navigate = useNavigate();
-    const { topicId } = useParams()
+    // const { topicId } = useParams()
 
     function getFontColor(col) {
+        if (col === undefined) return "#FFFFFF"
         if (col[0] === "#") {
             col = col.slice(1);
         }
@@ -24,6 +25,7 @@ function Topic({ topic }) {
     }
 
     function LightenDarkenColor(col, amt) {
+        if (col === undefined) return "#FFFFFF"
         var usePound = false;
         if (col[0] === "#") {
             col = col.slice(1);
@@ -51,7 +53,7 @@ function Topic({ topic }) {
     }
 
     function isSelected() {
-        if (topicId === topic.id) return true
+        // if (topicId === topic.id) return true
         return false
     }
 

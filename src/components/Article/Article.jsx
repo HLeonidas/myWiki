@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 
 function Article({ article }) {
 
@@ -7,8 +8,10 @@ function Article({ article }) {
     let navigate = useNavigate();
 
     function getContent() {
-        if (articleId === article.id) return <div>
-            {article.content}
+        if (articleId === article.id) return <div className='article-content-wrapper'>
+            <ReactMarkdown>
+                {article.content}
+            </ReactMarkdown>
         </div>
     }
 
