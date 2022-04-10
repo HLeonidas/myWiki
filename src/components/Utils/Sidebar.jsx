@@ -50,7 +50,6 @@ function Sidebar() {
             <h1 className='menu-header' onClick={() => navigate("/topic")}>myWiki</h1>
             <i className={active ? 'bi bi-x burger' : 'bi bi-list burger'} onClick={() => toggleActive()}></i>
             <div className='sidebar-topics-wrapper' aria-expanded={!active}>
-
                 <TopicList topics={topicsFiltered} setActive={setActive}></TopicList>
                 <div className='sidebar-footer-wrapper'>
                     <input type={"text"} className="searchBar" onChange={onChange} placeholder="Suchen"></input>

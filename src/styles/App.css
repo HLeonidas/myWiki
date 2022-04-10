@@ -25,8 +25,8 @@
   display: none;
   position: absolute;
   right: 15px;
-  top: 7px;
-  font-size: 20px;
+  top: 5px;
+  font-size: 30px;
 }
 
 .menu-header {
@@ -161,10 +161,16 @@
 }
 
 .article-content-wrapper {
-  height: 100%;
+  max-height: 1000px;
   transition: ease-out 1s;
   overflow: hidden;
   padding-left: 16px;
+}
+
+.article-content-wrapper[aria-expanded="true"] {
+  max-height: 0px;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+  border: 0px;
 }
 
 .btn-create-article {
