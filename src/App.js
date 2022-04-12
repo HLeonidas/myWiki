@@ -23,7 +23,7 @@ function App() {
         <div className='content'>
           <MySwitch
             routes={routes}
-            redirect={"/topics"}
+            redirect={"/topic"}
           ></MySwitch>
         </div>
       </BrowserRouter>
