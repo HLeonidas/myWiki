@@ -128,6 +128,18 @@
   margin-bottom: 12px;
 }
 
+.article-footer-p {
+  color: #3f92eae2;
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.article-footer-wrapper {
+  height: 20px;
+  padding: 0px;
+}
+
 .article-header {
   padding: 10px 0px;
   font-size: 20px;
@@ -273,6 +285,16 @@ input:focus {
   display: grid;
   grid-template-columns: 1fr;
   max-width: 468px;
+  padding-bottom: 10px;
+}
+
+.help-wrapper {
+  padding: 10px;
+}
+
+.help-header {
+  margin: 0px;
+  padding: 0px;
 }
 
 .ml5 {

@@ -44,8 +44,8 @@ function getArticleOfTopic(id) {
 function create(obj) {
     return new Promise((resolve, reject) => {
         addDoc(collectionRef, obj)
-            .then(() => {
-                resolve()
+            .then((obj) => {
+                resolve(obj.id)
             })
             .catch((err) => {
                 reject(err)
@@ -58,8 +58,8 @@ function addArticle(topicId, obj) {
 
     return new Promise((resolve, reject) => {
         addDoc(subColRef, obj)
-            .then(() => {
-                resolve()
+            .then((obj) => {
+                resolve(obj.id)
             })
             .catch((err) => {
                 reject(err)

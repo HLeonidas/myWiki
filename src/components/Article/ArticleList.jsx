@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import NoObjectsHere from '../../Helpers/NoObjectsHere'
 import { topicService } from '../../services/topicService'
 import Modal from '../Modal/Modal'
 // import Spinner from '../Utils/Spinner'
@@ -29,7 +30,7 @@ function ArticleList() {
     return (
         <div className='article-list-wrapper'>
             {articles.map((a) => <Article article={a}></Article>)}
-            {/* {articles.length === 0 ? <Spinner></Spinner> : null} */}
+            {articles.length === 0 ? <NoObjectsHere Title={"Keine Artikel vorhanden"} msg={"Erstellen Sie Artikel!"}></NoObjectsHere> : null}
             <button className='btn-create-article' onClick={() => setShow(true)}>
                 <i className='bi bi-plus'></i>
             </button>

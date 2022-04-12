@@ -158,7 +158,8 @@ function TopicForm({ closeModal }) {
     function createTopic() {
         let _topic = { ...topic, creationDate: new Date() }
         topicService.create(_topic)
-            .then(() => {
+            .then((id) => {
+                _topic.id = id
                 closeModal(_topic)
             })
             .catch((err) => {

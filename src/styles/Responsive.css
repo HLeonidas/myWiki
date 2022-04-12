@@ -15,6 +15,9 @@
 
   .sidebar-footer-wrapper {
     max-width: unset;
+    margin-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .sidebar {
@@ -40,11 +43,13 @@
     font-size: 16px;
     /* border-radius: 0px 0px 10px 10px; */
     border-bottom: 1px solid hsla(0, 0%, 50%, 0.479);
+    grid-template-rows: 1fr 130px;
   }
 
   .sidebar-topics-wrapper[aria-expanded="true"] {
     max-height: 0px;
-    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    /* transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); */
+    transition: max-height 0.3s ease-in-out;
     border: 0px;
   }
 
@@ -56,8 +61,12 @@
     margin-bottom: 8px;
   }
 
-  /* .btn-create-article {
+  .btn-create-article {
     right: 30px;
     bottom: 30px;
-  } */
+  }
+
+  .topic-list-header {
+    margin-top: 7px;
+  }
 }

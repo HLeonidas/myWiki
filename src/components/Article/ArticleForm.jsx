@@ -114,7 +114,8 @@ function ArticleForm({ closeModal }) {
   function createTopic() {
     let _article = { ...article, creationDate: new Date() }
     topicService.addArticle(topicId, _article)
-      .then(() => {
+      .then((id) => {
+        _article.id = id
         closeModal(_article)
       })
       .catch((err) => {
