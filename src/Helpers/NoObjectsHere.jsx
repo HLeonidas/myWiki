@@ -2,8 +2,8 @@ import React from 'react'
 
 function NoObjectsHere({ Title, msg }) {
     return (
-        <div>
-            <h1>{Title}</h1>
+        <div className='ml5'>
+            <h1>{Title || "Wählen Sie ein Topic aus"}</h1>
             <p>{msg}</p>
         </div>
     )
