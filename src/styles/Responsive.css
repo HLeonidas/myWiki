@@ -54,10 +54,6 @@
     padding-top: 2px;
   }
 
-  .topic-symbol {
-    padding-left: 0px;
-  }
-
   .sidebar-topics-wrapper[aria-expanded="true"] {
     max-height: 0px;
     /* transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); */

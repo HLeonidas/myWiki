@@ -62,8 +62,8 @@ function Topic({ topic, setActive }) {
             navigate("/topic/" + topic.id)
             setActive(false)
         }} key={topic.id}>
-            <div className='symbol-wrapper' style={{ background: topic.color, borderColor: LightenDarkenColor(topic.color, -20), color: getFontColor(topic.color) }}>
-                <i className={'topic-symbol bi ' + topic.symbol}></i>
+            <div className='' >
+                <i className={'topic-symbol bi ' + topic.symbol} style={{ background: topic.color, borderColor: LightenDarkenColor(topic.color, -20), color: getFontColor(topic.color) }}></i>
             </div>
             <p className='label-wrapper'>
                 {topic.label}

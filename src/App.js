@@ -18,6 +18,9 @@ function App() {
 
   return (
     <div className="App">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto');
+      </style>
       <BrowserRouter>
         <Sidebar></Sidebar>
         <div className='content'>
