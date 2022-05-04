@@ -36,7 +36,7 @@ function Sidebar() {
 
     function onChange(event) {
         const { value } = event.target;
-        let _topics = topics.filter((t) => t.label.includes(value))
+        let _topics = topics.filter((t) => t.label.toLowerCase().includes(value.toLowerCase()))
         setTopicsFiltered(_topics)
     }
 

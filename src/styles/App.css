@@ -15,6 +15,9 @@
 .sidebar-topics-wrapper {
   display: grid;
   grid-template-rows: 1fr 110px;
+  grid-template-areas:
+    "topics"
+    "topics-footer";
 }
 
 .content {
@@ -26,9 +29,13 @@
 .burger {
   display: none;
   position: absolute;
-  right: 15px;
-  top: 6px;
+  right: 0px;
+  top: 0px;
   font-size: 30px;
+  width: 70px;
+  height: 50px;
+  text-align: center;
+  padding-top: 6px;
 }
 
 .menu-header {
@@ -54,6 +61,7 @@
 .topic-wrapper {
   padding-left: 10px;
   padding-right: 10px;
+  grid-area: topics;
   /* max-height: mat; */
 }
 
@@ -348,6 +356,7 @@ input:focus {
   padding: 0px 15px;
   padding-top: 10px;
   border-top: 1px solid rgba(128, 128, 128, 0.479);
+  grid-area: topics-footer;
 }
 
 .searchBar {

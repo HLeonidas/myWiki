@@ -43,7 +43,15 @@
     font-size: 16px;
     /* border-radius: 0px 0px 10px 10px; */
     border-bottom: 1px solid hsla(0, 0%, 50%, 0.479);
-    grid-template-rows: 1fr 130px;
+    grid-template-rows: 130px 1fr;
+
+    grid-template-areas:
+      "topics-footer"
+      "topics";
+  }
+
+  .sidebar-footer-wrapper {
+    border-bottom: 1px solid hsla(0, 0%, 50%, 0.479);
   }
 
   .symbol-wrapper {
@@ -75,6 +83,6 @@
   }
 
   .topic-list-header {
-    margin-top: 7px;
+    margin-top: 10px;
   }
 }
