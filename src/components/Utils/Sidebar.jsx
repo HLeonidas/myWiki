@@ -54,7 +54,7 @@ function Sidebar() {
             setOnEdit(!onEdit)
             setOnDelete(false)
         } else if (mode === "delete") {
-            setOnEdit(!false)
+            setOnEdit(false)
             setOnDelete(!onDelete)
         }
     }
