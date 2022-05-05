@@ -5,16 +5,37 @@
   font-family: "Roboto", sans-serif;
 }
 
+::-webkit-scrollbar {
+  height: 10px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dbd3d3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 148, 148, 0.409);
+  border-radius: 20px;
+  /* border-radius: 4px; */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(122, 122, 122);
+}
+
 .sidebar {
   background-color: white;
   display: grid;
   /* grid-template-rows: 40px 1fr 110px; */
   grid-template-rows: 40px 1fr;
+  max-height: 100vh;
+  overflow: auto;
 }
 
 .sidebar-topics-wrapper {
   display: grid;
-  grid-template-rows: 1fr 110px;
+  grid-template-rows: 1fr 120px;
   grid-template-areas:
     "topics"
     "topics-footer";
@@ -24,6 +45,8 @@
   background-color: #efefef;
   /* background-color: #e4e5ed; */
   /* background-color: #e9f8ff; */
+  max-height: 100vh;
+  overflow: auto;
 }
 
 .burger {
@@ -33,7 +56,7 @@
   top: 0px;
   font-size: 30px;
   width: 70px;
-  height: 50px;
+  height: 43px;
   text-align: center;
   padding-top: 7px;
 }
@@ -101,13 +124,12 @@
 }
 
 .topic-symbol {
-  padding: 4px;
+  padding: 4px 5px;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   text-align: center;
   line-height: 30px;
-  vertical-align: center;
 }
 
 .topic-list-entry-wrapper:hover {
@@ -343,6 +365,62 @@ input:focus {
   font-size: 13px;
   text-transform: uppercase;
   color: rgb(218, 109, 109);
+}
+
+.sidebar-footer-menu {
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+
+.btn-sidebar-footer {
+  border: none;
+  /* font-size: medium; */
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+
+  /* padding: 0px; */
+  /* all: unset;
+  padding: 4px 5px;
+  border-radius: 50%;
+
+  text-align: center;
+  line-height: 30px; */
+}
+
+.green {
+  color: #006100;
+  background-color: #c6efce;
+}
+
+.yellow {
+  color: #9c5700;
+  background-color: #ffeb9c;
+}
+
+.red {
+  color: #9c0006;
+  background-color: #ffc7ce;
+}
+
+.green:hover {
+  /* color: #006100; */
+  background-color: #c6efcea0;
+}
+
+.yellow:hover {
+  /* color: #9c5700; */
+  background-color: #ffeb9ca0;
+}
+
+.red:hover {
+  /* color: #9c0006; */
+  background-color: #ffc7cda0;
+}
+
+.pt5 {
+  padding-top: 5px;
 }
 
 .sidebar-footer-wrapper {
