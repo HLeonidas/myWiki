@@ -11,7 +11,8 @@ export const topicService = {
     create,
     addArticle,
     updateArticle,
-    delete: _delete
+    delete: _delete,
+    deleteArticle: deleteArticle,
 };
 
 function getAll() {
@@ -68,10 +69,10 @@ function addArticle(topicId, obj) {
 }
 
 function updateArticle(topicId, obj) {
-    const subColRef = doc(db, "topics", topicId, "articles", obj.id);
+    const docRef = doc(db, "topics", topicId, "articles", obj.id);
 
     return new Promise((resolve, reject) => {
-        updateDoc(subColRef, obj)
+        updateDoc(docRef, obj)
             .then(() => {
                 resolve()
             })
@@ -90,7 +91,21 @@ function _delete(topicId) {
                 resolve()
             })
             .catch((err) => {
-                reject()
+                reject(err)
+            })
+    })
+}
+
+function deleteArticle(topicId, articleId) {
+    const docRef = doc(db, "topics", topicId, "articles", articleId);
+
+    return new Promise((resolve, reject) => {
+        deleteDoc(docRef)
+            .then(() => {
+                resolve()
+            })
+            .catch((err) => {
+                reject(err)
             })
     })
 }

@@ -41,11 +41,11 @@ function ArticleList() {
         setArticles(_articles)
     }
 
-    function deleteArticle(articleToDelete_id) {
+    function deleteArticle(article) {
         let _articles = [];
 
         for (let a of articles) {
-            if (a.id !== articleToDelete_id) _articles.push(a)
+            if (a.id !== article.id) _articles.push(a)
         }
 
         setArticles(_articles)

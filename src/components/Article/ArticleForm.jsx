@@ -142,6 +142,7 @@ function ArticleForm({ closeModal, edit }) {
         placeholder="Cloud"
         formValidationInfo={formValidationInfo}
         onChange={onChange}
+        additionalClass="mt-5"
       ></TextInputWithValidation>
 
       <div className="scroll max-height-400 article-form-input-content">

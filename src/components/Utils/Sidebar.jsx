@@ -72,6 +72,8 @@ function Sidebar() {
                 })
                 setTopicsFiltered(_t);
                 navigate("/topic/")
+
+                setOnDelete(false)
             })
             .catch((err) => {
                 console.log(err.toString())

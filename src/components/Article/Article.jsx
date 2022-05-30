@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import getDateAsString from '../../Helpers/DateAsString';
 import Modal from '../Modal/Modal';
 import ArticleForm from './ArticleForm';
+import DeleteArticleModal from './DeleteArticleModal';
 
 function Article({ article, updateArticle, deleteArticle }) {
 
@@ -32,12 +33,14 @@ function Article({ article, updateArticle, deleteArticle }) {
         }
     }
 
+
     function closeModalDelete(_a) {
         setShowDelete(false)
         if (_a) {
             deleteArticle(_a)
         }
     }
+
 
     return (
         <div className={articleId === article.id ? 'article-wrapper' : 'article-wrapper boxShadow'} >
@@ -55,12 +58,13 @@ function Article({ article, updateArticle, deleteArticle }) {
                     <button className='article-footer-delete-btn' onClick={() => setShowDelete(true)}><i className="bi bi-trash"></i></button>
                 </div>
             </div>
+
             <Modal title="Artikel bearbeiten" onClose={() => closeModalEdit()} show={show}>
                 <ArticleForm closeModal={closeModalEdit} edit={article}></ArticleForm>
             </Modal>
-            <Modal title="Artikel löschen" onClose={() => closeModalDelete()} show={showDelete}>
 
-                test
+            <Modal title="Artikel löschen" onClose={() => closeModalDelete()} show={showDelete}>
+                <DeleteArticleModal closeModal={closeModalDelete} article={article}></DeleteArticleModal>
             </Modal>
         </div>
     )

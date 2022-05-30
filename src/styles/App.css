@@ -3,6 +3,11 @@
   grid-template-columns: 200px 1fr;
   height: 100vh;
   font-family: "Roboto", sans-serif;
+  background-color: white;
+}
+
+body {
+  position: relative;
 }
 
 ::-webkit-scrollbar {
@@ -258,6 +263,11 @@
   transition: ease-out 1s;
   overflow: hidden;
   padding-left: 16px;
+}
+
+.article-content-wrapper:first-child {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
 }
 
 .article-content-wrapper[aria-expanded="true"] {
