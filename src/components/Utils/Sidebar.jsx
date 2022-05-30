@@ -59,12 +59,41 @@ function Sidebar() {
         }
     }
 
+    function removeTopic(id) {
+        topicService.delete(id)
+            .then(() => {
+                let _topics = topics.filter((t) => {
+                    return t.id !== id
+                })
+                setTopics(_topics);
+
+                let _t = topicsFiltered.filter((t) => {
+                    return t.id !== id
+                })
+                setTopicsFiltered(_t);
+                navigate("/topic/")
+            })
+            .catch((err) => {
+                console.log(err.toString())
+            })
+    }
+
+    // function editTopic(topic) {
+    //     // topicService.delete(id)
+    //     // .then(() => {
+    //     //     console.log("deleted")
+    //     // })
+    //     // .catch((err) => {
+    //     //     console.log(err.toString())
+    //     // })
+    // }
+
     return (
         <div className='sidebar'>
             <h1 className='menu-header' onClick={() => navigate("/topic")}>myWiki</h1>
             <i className={active ? 'bi bi-x burger' : 'bi bi-list burger'} onClick={() => toggleActive()}></i>
             <div className='sidebar-topics-wrapper' aria-expanded={!active}>
-                <TopicList topics={topicsFiltered} onEdit={onEdit} onDelete={onDelete} setActive={setActive}></TopicList>
+                <TopicList topics={topicsFiltered} onEdit={onEdit} onDelete={onDelete} setActive={setActive} removeTopic={removeTopic}></TopicList>
                 <div className='sidebar-footer-wrapper'>
                     <input type={"text"} className="searchBar" onChange={onChange} placeholder="Suchen"></input>
                     <button className='btn-add-topic' onClick={() => { setShow(true) }}>+ Topic hinzufügen</button>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 
-function Topic({ topic, setActive, onEdit, onDelete }) {
+function Topic({ topic, setActive, onEdit, onDelete, removeTopic, updateTopic }) {
     let navigate = useNavigate();
     // const { topicId } = useParams()
 
@@ -57,16 +57,14 @@ function Topic({ topic, setActive, onEdit, onDelete }) {
         return false
     }
 
-    function deleteTopic() {
 
-    }
 
     function editTopic() {
-
+        //topicService._delete(topic.id)
     }
 
     function getSymbol() {
-        if (onDelete) return <i className={'topic-symbol bi bi-trash red'} onClick={() => deleteTopic()}></i>
+        if (onDelete) return <i className={'topic-symbol bi bi-trash red'} onClick={() => removeTopic(topic.id)}></i>
         else if (onEdit) return <i className={'topic-symbol bi bi-pencil yellow'} onClick={() => editTopic()}></i>
         else return <i className={'topic-symbol bi ' + topic.symbol} style={{ background: topic.color, borderColor: LightenDarkenColor(topic.color, -20), color: getFontColor(topic.color) }}></i>
     }
@@ -79,7 +77,7 @@ function Topic({ topic, setActive, onEdit, onDelete }) {
             <div className='' >
                 {getSymbol()}
             </div>
-            <p className='label-wrapper'>
+            <p className='label-wrapper' title={topic.label}>
                 {topic.label}
             </p>
         </div>

@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import getDateAsString from '../../Helpers/DateAsString';
+import Modal from '../Modal/Modal';
+import ArticleForm from './ArticleForm';
 
-function Article({ article }) {
+function Article({ article, updateArticle, deleteArticle }) {
 
     const { topicId, articleId } = useParams()
+    const [show, setShow] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
     let navigate = useNavigate();
 
     function toggleOpen() {
@@ -13,7 +17,27 @@ function Article({ article }) {
         else navigate("/topic/" + topicId + "/article/" + article.id)
     }
 
+    function getInfo() {
+        if (article.editationDate) {
+            return <p className='article-footer-p'>Zuletzt editiert am: {getDateAsString(article.editationDate) || getDateAsString(article.editationDate)}</p>
+        } else {
+            return <p className='article-footer-p'>Erstellt am: {getDateAsString(article.creationDate)}</p>
+        }
+    }
 
+    function closeModalEdit(_a) {
+        setShow(false)
+        if (_a) {
+            updateArticle(_a)
+        }
+    }
+
+    function closeModalDelete(_a) {
+        setShowDelete(false)
+        if (_a) {
+            deleteArticle(_a)
+        }
+    }
 
     return (
         <div className={articleId === article.id ? 'article-wrapper' : 'article-wrapper boxShadow'} >
@@ -25,10 +49,19 @@ function Article({ article }) {
                 <ReactMarkdown>
                     {article.content}
                 </ReactMarkdown>
-                <div className='article-footer-wrapper line-wrapper'>
-                    <p className='article-footer-p'>Erstellt am: {getDateAsString(article.creationDate)}</p>
+                <div className='article-footer-wrapper'>
+                    {getInfo()}
+                    <button className='article-footer-btn' onClick={() => setShow(true)}>bearbeiten</button>
+                    <button className='article-footer-delete-btn' onClick={() => setShowDelete(true)}><i className="bi bi-trash"></i></button>
                 </div>
             </div>
+            <Modal title="Artikel bearbeiten" onClose={() => closeModalEdit()} show={show}>
+                <ArticleForm closeModal={closeModalEdit} edit={article}></ArticleForm>
+            </Modal>
+            <Modal title="Artikel löschen" onClose={() => closeModalDelete()} show={showDelete}>
+
+                test
+            </Modal>
         </div>
     )
 }

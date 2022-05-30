@@ -4,13 +4,13 @@ import { topicService } from '../../services/topicService';
 import ReactMarkdown from 'react-markdown'
 import { useParams } from 'react-router-dom';
 
-function ArticleForm({ closeModal }) {
+function ArticleForm({ closeModal, edit }) {
 
   const { topicId } = useParams()
 
   let formValidationInfoDEMO = {
     label: {
-      valid: false,
+      valid: true,
       msg: "",
     },
     content: {
@@ -18,15 +18,19 @@ function ArticleForm({ closeModal }) {
       msg: "",
     },
     form: {
-      valid: true,
+      valid: false,
       msg: "",
     }
   };
 
-  const [article, setTopic] = useState({
-    label: "",
-    content: ""
-  });
+  if (!edit) {
+    edit = {
+      label: "",
+      content: ""
+    }
+  }
+
+  const [article, setTopic] = useState(edit);
 
   const [formValidationInfo, setFormValidationInfo] = useState(
     formValidationInfoDEMO
@@ -39,11 +43,8 @@ function ArticleForm({ closeModal }) {
       case "label":
         validationInfo = checkLabel(value);
         break;
-      case "symbol":
-        validationInfo = checkSymbol(value);
-        break;
-      case "color":
-        validationInfo = checkColor(value);
+      case "content":
+        validationInfo = checkContent(value);
         break;
       default:
     }
@@ -91,7 +92,7 @@ function ArticleForm({ closeModal }) {
     return { valid, msg };
   }
 
-  function checkColor(value) {
+  function checkContent(value) {
     let msg = "";
     let valid = true;
     if (!value) {
@@ -101,17 +102,7 @@ function ArticleForm({ closeModal }) {
     return { valid, msg };
   }
 
-  function checkSymbol(value) {
-    let msg = "";
-    let valid = true;
-    if (!value) {
-      msg = "";
-      valid = false;
-    }
-    return { valid, msg };
-  }
-
-  function createTopic() {
+  function createArticle() {
     let _article = { ...article, creationDate: new Date() }
     topicService.addArticle(topicId, _article)
       .then((id) => {
@@ -121,6 +112,25 @@ function ArticleForm({ closeModal }) {
       .catch((err) => {
         console.log(err)
       })
+  }
+
+  function updateArticle() {
+    let _article = { ...article, editationDate: new Date() }
+    topicService.updateArticle(topicId, _article)
+      .then(() => {
+        closeModal(_article)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  function submit() {
+    if (edit.id) {
+      updateArticle()
+    } else {
+      createArticle()
+    }
   }
 
   return (
@@ -134,21 +144,22 @@ function ArticleForm({ closeModal }) {
         onChange={onChange}
       ></TextInputWithValidation>
 
-      <div className="grid-2-columns scroll max-height-400">
+      <div className="scroll max-height-400 article-form-input-content">
         <div>
           <label className="inputLabel">Inhalt</label>
-          <textarea onChange={onChange} name="content" placeholder='# Heading' className='text-area-content' rows="10"></textarea>
+          <textarea onChange={onChange} value={article.content} name="content" placeholder='# Heading' className='text-area-content' rows="10"></textarea>
         </div>
-        <div className='ml5'>
+        <div className='ml5 article-form-vorschlag'>
           <label htmlFor={`inputCtrl_content`} className="inputLabel">Vorschau</label>
           <ReactMarkdown>{article.content}</ReactMarkdown>
         </div>
       </div>
 
+
       <button className='btn-create-object'
         disabled={!formValidationInfo["form"]?.valid}
-        onClick={() => createTopic()}>
-        erstellen
+        onClick={() => submit()}>
+        {edit.id ? "aktualisieren" : "erstellen"}
       </button>
     </div>
   )

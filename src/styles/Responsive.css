@@ -35,6 +35,28 @@
     width: 99%;
   }
 
+  .topic-wrapper {
+    max-height: 450px;
+  }
+
+  .article-form-input-content {
+    display: unset;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 1fr 1fr; */
+    gap: 10px;
+  }
+
+  .text-area-content {
+    /* min-height: max-content; */
+    /* overflow: auto; */
+    height: 50%;
+    width: 98%;
+  }
+
+  .article-form-vorschlag {
+    margin-left: 0px;
+  }
+
   .sidebar-topics-wrapper {
     overflow: hidden;
     max-height: 1000px;

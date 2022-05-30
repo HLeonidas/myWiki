@@ -1,4 +1,4 @@
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
 const collectionName = "topics"
@@ -9,9 +9,9 @@ export const topicService = {
     getAll,
     getArticleOfTopic,
     create,
-    addArticle
-    // update,
-    // delete: _delete,
+    addArticle,
+    updateArticle,
+    delete: _delete
 };
 
 function getAll() {
@@ -63,6 +63,34 @@ function addArticle(topicId, obj) {
             })
             .catch((err) => {
                 reject(err)
+            })
+    })
+}
+
+function updateArticle(topicId, obj) {
+    const subColRef = doc(db, "topics", topicId, "articles", obj.id);
+
+    return new Promise((resolve, reject) => {
+        updateDoc(subColRef, obj)
+            .then(() => {
+                resolve()
+            })
+            .catch((err) => {
+                reject(err)
+            })
+    })
+}
+
+function _delete(topicId) {
+    const docRef = doc(db, "topics", topicId);
+
+    return new Promise((resolve, reject) => {
+        deleteDoc(docRef)
+            .then(() => {
+                resolve()
+            })
+            .catch((err) => {
+                reject()
             })
     })
 }
