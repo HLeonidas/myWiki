@@ -53,13 +53,15 @@ function ArticleList() {
 
     return (
         <div className='article-list-wrapper'>
-            {articles.map((a) => <Article updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
-
-            {articles.length === 0 ? <NoObjectsHere Title={"Keine Artikel vorhanden"} msg={"Erstellen Sie Artikel!"}></NoObjectsHere> : null}
 
             <button className='btn-create-article' onClick={() => setShow(true)}>
                 <i className='bi bi-plus'></i>
             </button>
+
+            {articles.map((a) => <Article updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
+
+            {articles.length === 0 ? <NoObjectsHere Title={"Keine Artikel vorhanden"} msg={"Erstellen Sie Artikel!"}></NoObjectsHere> : null}
+
             <Modal title="Artikel erstellen" onClose={() => setShow(false)} show={show}>
                 <ArticleForm closeModal={closeModal} ></ArticleForm>
             </Modal>

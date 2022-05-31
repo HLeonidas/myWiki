@@ -1,0 +1,8 @@
+@supports (-webkit-touch-callout: none) {
+  .searchbar,
+  .form-control,
+  .text-area-content {
+    padding: 0px;
+    margin: 0px;
+  }
+}

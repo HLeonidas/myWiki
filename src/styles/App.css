@@ -100,6 +100,7 @@ body {
 
 .btn-add-topic {
   background-color: #007bffe2;
+  /* background: rgb(117, 196, 245); */
   color: rgb(236, 243, 253);
   border: none;
   border-radius: 5px;
@@ -195,6 +196,7 @@ body {
 .article-footer-btn {
   all: unset;
   color: #3f92eaa7;
+  /* background: rgb(117, 196, 245); */
   /* color: #8e8e8ee2; */
   font-size: 12px;
   padding: 0px;
@@ -283,6 +285,8 @@ body {
   right: 50px;
   border-radius: 50%;
   background-color: #007bffe2;
+  /* background: rgb(117, 196, 245); */
+
   color: rgb(236, 243, 253);
   height: 50px;
   width: 50px;
@@ -357,6 +361,7 @@ input:focus {
   border-radius: 5px;
   padding: 3px 8px;
   background-color: #007bffe2;
+  /* background: rgb(117, 196, 245); */
   color: rgb(236, 243, 253);
   margin-left: auto;
   margin-right: 0px;

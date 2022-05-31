@@ -5,8 +5,15 @@
 
   .App {
     grid-template-columns: 1fr;
-    height: 100vh;
-    grid-template-rows: 50px 1fr;
+    height: 100%;
+    grid-template-rows: 1fr;
+    min-height: 100vh;
+  }
+
+  .content {
+    /* margin-top: 50px; */
+    max-height: 100%;
+    min-height: 96vh;
   }
 
   .label-wrapper {
@@ -28,7 +35,15 @@
   .sidebar {
     background-color: white;
     display: grid;
-    grid-template-rows: 40px 1fr;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    overflow: visible;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.027),
+      0 4px 8px rgba(0, 0, 0, 0.034), 0 8px 16px rgba(0, 0, 0, 0.011),
+      0 16px 32px rgba(0, 0, 0, 0.023), 0 32px 64px rgba(0, 0, 0, 0);
+    /* border-bottom: gray 1px; */
   }
 
   .searchBar {
@@ -65,7 +80,7 @@
     z-index: 1;
     /* width: calc(100% - 20px); */
     width: 100%;
-    top: 51px;
+    top: 50px;
     position: absolute;
     background-color: rgb(255, 255, 255);
     /* background: #eef0f6c2 !important; */
@@ -99,6 +114,7 @@
 
   .article-list-wrapper {
     padding: 10px;
+    padding-bottom: 70px;
   }
 
   .topic-list-entry-wrapper {
@@ -106,11 +122,26 @@
   }
 
   .btn-create-article {
-    right: 30px;
-    bottom: 30px;
+    display: block;
+    position: unset;
+    width: 100%;
+    border-radius: 0px;
+    background: rgb(117, 196, 245);
+    border-radius: 6px;
+    margin-bottom: 12px;
   }
 
   .topic-list-header {
     margin-top: 10px;
+  }
+
+  .modal-content {
+    margin-top: 15%;
+    width: 100%;
+    height: 92%;
+  }
+
+  .modal {
+    align-items: flex-end;
   }
 }

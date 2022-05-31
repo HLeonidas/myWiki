@@ -26,8 +26,8 @@
 .modal-content {
   width: 600px;
   background-color: #fff;
-  transition: all 0.3s ease-in-out;
-  transform: translateY(-200px);
+  transition: all 0.3s ease;
+  transform: translateY(200px);
   border-radius: 10px;
   border: none;
 }
@@ -37,7 +37,7 @@
 }
 
 .modal.exit .modal-content {
-  transform: translateY(-200px);
+  transform: translateY(200px);
 }
 
 .modal-header,
