@@ -58,11 +58,11 @@ function ArticleList() {
                 <i className='bi bi-plus'></i>
             </button>
 
-            {articles.map((a) => <Article updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
+            {articles.map((a) => <Article key={a.id} updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
 
             {articles.length === 0 ? <NoObjectsHere Title={"Keine Artikel vorhanden"} msg={"Erstellen Sie Artikel!"}></NoObjectsHere> : null}
 
-            <Modal title="Artikel erstellen" onClose={() => setShow(false)} show={show}>
+            <Modal title="Artikel erstellen" key={"createArticleModal"} onClose={() => setShow(false)} show={show}>
                 <ArticleForm closeModal={closeModal} ></ArticleForm>
             </Modal>
         </div>

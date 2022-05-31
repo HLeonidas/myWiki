@@ -135,13 +135,13 @@
     margin-top: 10px;
   }
 
-  .modal-content {
-    margin-top: 15%;
-    width: 100%;
-    height: 92%;
-  }
+  /* .modal-content { */
+  /* margin-top: 15%; */
+  /* width: 100%; */
+  /* height: 70%; */
+  /* } */
 
-  .modal {
+  /* .modal {
     align-items: flex-end;
-  }
+  } */
 }

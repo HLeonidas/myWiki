@@ -41,9 +41,8 @@ function Article({ article, updateArticle, deleteArticle }) {
         }
     }
 
-
     return (
-        <div className={articleId === article.id ? 'article-wrapper' : 'article-wrapper boxShadow'} >
+        <div key={article.id} className={articleId === article.id ? 'article-wrapper' : 'article-wrapper boxShadow'} >
             <div className='line-wrapper article-header-wrapper' onClick={() => toggleOpen()}>
                 <h2 className='article-header' >{article.label}</h2>
                 <i className={articleId === article.id ? "bi bi-chevron-right btn-chevron rotation" : "bi bi-chevron-right btn-chevron "}></i>
@@ -59,11 +58,11 @@ function Article({ article, updateArticle, deleteArticle }) {
                 </div>
             </div>
 
-            <Modal title="Artikel bearbeiten" onClose={() => closeModalEdit()} show={show}>
+            <Modal title="Artikel bearbeiten" key={article.id + "changeArticle"} onClose={() => closeModalEdit()} show={show}>
                 <ArticleForm closeModal={closeModalEdit} edit={article}></ArticleForm>
             </Modal>
 
-            <Modal title="Artikel löschen" onClose={() => closeModalDelete()} show={showDelete}>
+            <Modal title="Artikel löschen" key={article.id + "deleteArticle"} onClose={() => closeModalDelete()} show={showDelete}>
                 <DeleteArticleModal closeModal={closeModalDelete} article={article}></DeleteArticleModal>
             </Modal>
         </div>

@@ -57,8 +57,6 @@ function Topic({ topic, setActive, onEdit, onDelete, removeTopic, updateTopic })
         return false
     }
 
-
-
     function editTopic() {
         //topicService._delete(topic.id)
     }
@@ -70,14 +68,14 @@ function Topic({ topic, setActive, onEdit, onDelete, removeTopic, updateTopic })
     }
 
     return (
-        <div className={isSelected() ? 'line-wrapper topic-list-entry-wrapper selected' : 'line-wrapper topic-list-entry-wrapper'} onClick={() => {
+        <div key={topic.label} className={isSelected() ? 'line-wrapper topic-list-entry-wrapper selected' : 'line-wrapper topic-list-entry-wrapper'} onClick={() => {
             navigate("/topic/" + topic.id)
             setActive(false)
-        }} key={topic.id}>
-            <div className='' >
+        }}>
+            <div className='' key={topic.id + "symbol"}>
                 {getSymbol()}
             </div>
-            <p className='label-wrapper' title={topic.label}>
+            <p className='label-wrapper' key={topic.id + "label"} title={topic.label}>
                 {topic.label}
             </p>
         </div>
