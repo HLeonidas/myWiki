@@ -20,9 +20,9 @@ function Article({ article, updateArticle, deleteArticle }) {
 
     function getInfo() {
         if (article.editationDate) {
-            return <p className='article-footer-p'>Zuletzt editiert am: {getDateAsString(article.editationDate) || getDateAsString(article.editationDate)}</p>
+            return <p className='article-footer-p'>Zuletzt editiert am: {getDateAsString(article.editationDate.toDate())}</p>
         } else {
-            return <p className='article-footer-p'>Erstellt am: {getDateAsString(article.creationDate)}</p>
+            return <p className='article-footer-p'>Erstellt am: {getDateAsString(article.creationDate.toDate())}</p>
         }
     }
 
