@@ -20,9 +20,9 @@ function Article({ article, updateArticle, deleteArticle }) {
 
     function getInfo() {
         if (article.editationDate) {
-            return <p className='article-footer-p'>Zuletzt editiert am: {getDateAsString(article.editationDate.toDate())}</p>
+            return <p className='article-footer-p'>Zuletzt editiert am: {article.editationDate.toDate ? getDateAsString(article.editationDate.toDate()) : getDateAsString(article.editationDate)}</p>
         } else {
-            return <p className='article-footer-p'>Erstellt am: {getDateAsString(article.creationDate.toDate())}</p>
+            return <p className='article-footer-p'>Erstellt am: {article.creationDate.toDate ? getDateAsString(article.creationDate.toDate()) : getDateAsString(article.creationDate)}</p>
         }
     }
 
@@ -42,20 +42,23 @@ function Article({ article, updateArticle, deleteArticle }) {
     }
 
     return (
-        <div key={article.id} className={articleId === article.id ? 'article-wrapper' : 'article-wrapper boxShadow'} >
+        <div key={article.id} className={articleId === article.id ? 'article-wrapper' : 'article-wrapper'} >
+            <div className='article-color-wrapper'>
+                <span className="line" style={{ borderColor: article.color || "gray" }}></span>
+            </div>
             <div className='line-wrapper article-header-wrapper' onClick={() => toggleOpen()}>
                 <h2 className='article-header' >{article.label}</h2>
-                <i className={articleId === article.id ? "bi bi-chevron-right btn-chevron rotation" : "bi bi-chevron-right btn-chevron "}></i>
+                {/* <i className={articleId === article.id ? "bi bi-chevron-right btn-chevron rotation" : "bi bi-chevron-right btn-chevron "}></i> */}
             </div>
             <div className='article-content-wrapper' aria-expanded={!(articleId === article.id)}>
                 <ReactMarkdown>
                     {article.content}
                 </ReactMarkdown>
-                <div className='article-footer-wrapper'>
-                    {getInfo()}
-                    <button className='article-footer-btn' onClick={() => setShow(true)}>bearbeiten</button>
-                    <button className='article-footer-delete-btn' onClick={() => setShowDelete(true)}><i className="bi bi-trash"></i></button>
-                </div>
+                <button className='article-footer-btn bi bi-pencil' onClick={() => setShow(true)}></button>
+                <button className='article-footer-delete-btn' onClick={() => setShowDelete(true)}><i className="bi bi-trash"></i></button>
+            </div>
+            <div className='article-footer-wrapper'>
+                {getInfo()}
             </div>
 
             <Modal title="Artikel bearbeiten" key={article.id + "changeArticle"} onClose={() => closeModalEdit()} show={show}>

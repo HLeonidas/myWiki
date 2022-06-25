@@ -48,6 +48,7 @@ body {
 
 .content {
   background-color: #efefef;
+  /* background-color: #efefef7a; */
   /* background-color: #e4e5ed; */
   /* background-color: #e9f8ff; */
   max-height: 100vh;
@@ -179,29 +180,53 @@ body {
 
 .article-wrapper {
   background: white;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   transition: box-shadow 0.2s;
   margin-bottom: 12px;
+  margin-bottom: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px, rgba(0, 0, 0, 0.162) 0px 1px 2px;
+  /* height: 100px; */
+}
+
+.article-wrapper:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.article-color-wrapper {
+  width: 100%;
+  /* padding: 10px; */
+}
+
+.line {
+  padding: 10px;
+  margin: 3px 16px;
+  border-bottom: 3px solid gray;
+  display: block;
 }
 
 .article-footer-p {
-  color: #3f92eaa7;
+  /* color: #3f92eaa7; */
+  color: black;
   /* color: #8e8e8ee2; */
-  font-size: 12px;
+  font-size: 11px;
   padding: 0px;
   margin: 0px;
-  padding-top: 3px;
+  padding-top: 1px;
 }
 
 .article-footer-btn {
   all: unset;
-  color: #3f92eaa7;
+  /* color: #3f92eaa7; */
+  color: #515151a7;
   /* background: rgb(117, 196, 245); */
   /* color: #8e8e8ee2; */
   font-size: 12px;
-  padding: 0px;
-  margin: 0px;
+  margin-left: auto;
+  margin-right: 12px;
+  padding: 8px 0px;
   text-decoration: underline;
+  transition: 200ms;
 }
 
 .article-footer-delete-btn {
@@ -219,13 +244,16 @@ body {
 .article-footer-delete-btn:hover {
   color: #ffc7ce;
 }
+.article-footer-btn:hover {
+  color: #f6ff77;
+}
 
 .article-footer-wrapper {
   height: 20px;
-  padding: 0px;
+  padding-left: 18px;
   display: flex;
   gap: 15px;
-  padding-bottom: 3px;
+  padding-bottom: 5px;
 }
 
 .article-header {
@@ -233,7 +261,7 @@ body {
   font-size: 20px;
   margin: 0px;
   font-size: 23px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .btn-chevron {
@@ -256,7 +284,10 @@ body {
 }
 
 .boxShadow:hover {
-  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  /* box-shadow: 0 0 11px rgba(33, 33, 33, 0.2); */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   /* box-shadow: 0 0 11px rgba(122, 148, 235, 0.463); */
 }
 

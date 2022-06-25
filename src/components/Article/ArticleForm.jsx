@@ -17,6 +17,10 @@ function ArticleForm({ closeModal, edit }) {
       valid: true,
       msg: "",
     },
+    color: {
+      valid: true,
+      msg: "",
+    },
     form: {
       valid: false,
       msg: "",
@@ -42,6 +46,9 @@ function ArticleForm({ closeModal, edit }) {
     switch (name) {
       case "label":
         validationInfo = checkLabel(value);
+        break;
+      case "color":
+        validationInfo = checkContent(value);
         break;
       case "content":
         validationInfo = checkContent(value);
@@ -143,6 +150,15 @@ function ArticleForm({ closeModal, edit }) {
         formValidationInfo={formValidationInfo}
         onChange={onChange}
         additionalClass="mt-5"
+      ></TextInputWithValidation>
+
+      <TextInputWithValidation
+        formObject={article}
+        objectKey="color"
+        label="Farbe"
+        formValidationInfo={formValidationInfo}
+        onChange={onChange}
+        type="color"
       ></TextInputWithValidation>
 
       <div className="scroll max-height-400 article-form-input-content">

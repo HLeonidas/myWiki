@@ -15,7 +15,7 @@ function ArticleList() {
     useEffect(() => {
         topicService.getArticleOfTopic(topicId)
             .then((data) => {
-                setArticles(data)
+                setArticles(data.sort((a, b) => a.label.toLowerCase() > b.label.toLowerCase() ? 1 : -1))
             })
             .catch((err) => {
                 console.log(err)
@@ -51,6 +51,14 @@ function ArticleList() {
         setArticles(_articles)
     }
 
+    function getLatestCreatedArticles() {
+        if (!articles) return [];
+
+        let latestCraeted = [...articles].sort((a, b) => a.date < b.date ? 1 : -1)
+        return latestCraeted.slice(0, 3);
+
+    }
+
     return (
         <div className='article-list-wrapper'>
 
@@ -58,9 +66,14 @@ function ArticleList() {
                 <i className='bi bi-plus'></i>
             </button>
 
+            {articles.length === 0 ? <NoObjectsHere Title={"Keine Artikel vorhanden"} msg={"Erstellen Sie Artikel!"}></NoObjectsHere> : null}
+
+            {articles.length !== 0 ? <h3 style={{ paddingLeft: "2px", marginBottom: "12px" }}>Zuletzt erstellte Artikel</h3> : null}
+            {getLatestCreatedArticles().map((a) => <Article key={a.id} updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
+
+            {articles.length !== 0 ? <h3 style={{ paddingLeft: "2px", marginBottom: "12px" }}>Alle Artikel</h3> : null}
             {articles.map((a) => <Article key={a.id} updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
 
-            {articles.length === 0 ? <NoObjectsHere Title={"Keine Artikel vorhanden"} msg={"Erstellen Sie Artikel!"}></NoObjectsHere> : null}
 
             <Modal title="Artikel erstellen" key={"createArticleModal"} onClose={() => setShow(false)} show={show}>
                 <ArticleForm closeModal={closeModal} ></ArticleForm>
