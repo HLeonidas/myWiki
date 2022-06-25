@@ -9,13 +9,14 @@ import ArticleForm from './ArticleForm'
 
 function ArticleList() {
     const [articles, setArticles] = useState([])
+    const [latestArticles, setLatestArticles] = useState([])
     const { topicId } = useParams()
     const [show, setShow] = useState(false);
 
     useEffect(() => {
         topicService.getArticleOfTopic(topicId)
             .then((data) => {
-                setArticles(data.sort((a, b) => a.label.toLowerCase() > b.label.toLowerCase() ? 1 : -1))
+                UpdateArticles(data);
             })
             .catch((err) => {
                 console.log(err)
@@ -23,8 +24,15 @@ function ArticleList() {
     }, [topicId])
 
     function closeModal(article) {
-        setArticles([...articles, article])
+        UpdateArticles([...articles, ...latestArticles, article])
+        // setArticles([...articles, ])
         setShow(false)
+    }
+
+    function UpdateArticles(data) {
+        let sortedByDate = [...data].sort((a, b) => a.date < b.date ? 1 : -1)
+        setLatestArticles(sortedByDate.slice(0, 3))
+        setArticles(sortedByDate.slice(3, sortedByDate.length).sort((a, b) => a.label.toLowerCase() > b.label.toLowerCase() ? 1 : -1))
     }
 
     function updateArticle(newArticle) {
@@ -38,7 +46,22 @@ function ArticleList() {
             }
         }
 
-        setArticles(_articles)
+        // setArticles(_articles)
+
+        let _articlesLatest = [];
+
+        for (let a of latestArticles) {
+            if (a.id === newArticle.id) {
+                _articles.push(newArticle)
+            } else {
+                _articles.push(a)
+            }
+        }
+
+        UpdateArticles([..._articles, ..._articlesLatest])
+
+        // setLatestArticles(_articles)
+
     }
 
     function deleteArticle(article) {
@@ -48,16 +71,36 @@ function ArticleList() {
             if (a.id !== article.id) _articles.push(a)
         }
 
-        setArticles(_articles)
+        // setArticles(_articles)
+
+        let _articlesLatest = [];
+
+        for (let a of latestArticles) {
+            if (a.id !== article.id) _articles.push(a)
+        }
+
+        // setLatestArticles(_articles)
+        UpdateArticles([..._articles, ..._articlesLatest])
+
     }
 
-    function getLatestCreatedArticles() {
-        if (!articles) return [];
+    // function getLatestCreatedArticles() {
+    // if (!articles) return [];
 
-        let latestCraeted = [...articles].sort((a, b) => a.date < b.date ? 1 : -1)
-        return latestCraeted.slice(0, 3);
 
-    }
+    // let latestCraeted = [...articles].sort((a, b) => a.date < b.date ? 1 : -1).slice(0, 3)
+
+    // for (var i = 0; i < articles.length; i++) {
+
+    //     if (articles[i].id === 5) {
+
+    //         articles.slice(i, 1);
+    //     }
+
+    // }
+    // setArticles(articles)
+    // return latestCraeted;
+    // }
 
     return (
         <div className='article-list-wrapper'>
@@ -66,10 +109,10 @@ function ArticleList() {
                 <i className='bi bi-plus'></i>
             </button>
 
-            {articles.length === 0 ? <NoObjectsHere Title={"Keine Artikel vorhanden"} msg={"Erstellen Sie Artikel!"}></NoObjectsHere> : null}
+            {latestArticles.length === 0 ? <NoObjectsHere Title={"Keine Artikel vorhanden"} msg={"Erstellen Sie Artikel!"}></NoObjectsHere> : null}
 
-            {articles.length !== 0 ? <h3 style={{ paddingLeft: "2px", marginBottom: "12px" }}>Zuletzt erstellte Artikel</h3> : null}
-            {getLatestCreatedArticles().map((a) => <Article key={a.id} updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
+            {latestArticles.length !== 0 ? <h3 style={{ paddingLeft: "2px", marginBottom: "12px" }}>Zuletzt erstellte Artikel</h3> : null}
+            {latestArticles.map((a) => <Article key={a.id} updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
 
             {articles.length !== 0 ? <h3 style={{ paddingLeft: "2px", marginBottom: "12px" }}>Alle Artikel</h3> : null}
             {articles.map((a) => <Article key={a.id} updateArticle={updateArticle} deleteArticle={deleteArticle} article={a}></Article>)}
